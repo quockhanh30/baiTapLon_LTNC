@@ -467,7 +467,7 @@ void dangXuat(SDL_Renderer* renderer, TTF_Font* font) {
 
     SDL_RenderPresent(renderer);
 
-    // Vòng lặp chờ người dùng đóng cửa sổ
+
     bool quit = false;
     SDL_Event e;
     while (!quit) {
@@ -476,7 +476,7 @@ void dangXuat(SDL_Renderer* renderer, TTF_Font* font) {
                 quit = true;
             }
         }
-        SDL_Delay(10); // Giảm tải CPU
+        SDL_Delay(10);
     }
 
     SDL_DestroyTexture(backgroundTexture);
