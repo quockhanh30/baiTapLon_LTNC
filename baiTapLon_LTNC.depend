@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1745767360 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\graphics.cpp
+1746371942 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\graphics.cpp
 	"graphics.h"
 	<SDL_image.h>
 	<iostream>
@@ -7,7 +7,7 @@
 	"trangThaiTaiKhoan.h"
 	<SDL_mixer.h>
 
-1745421881 c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\graphics.h
+1746371672 c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -26,7 +26,7 @@
 1745421882 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\trangthaitaikhoan.cpp
 	"trangThaiTaiKhoan.h"
 
-1745421904 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\main.cpp
+1746371916 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\main.cpp
 	"graphics.h"
 	"trangThaiTaiKhoan.h"
 	<iostream>

@@ -44,29 +44,7 @@ bool isInside(int x, int y, SDL_Rect rect) {
     return x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h;
 }
 
-void renderMessage(SDL_Renderer* renderer, TTF_Font* font, const string& message) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 64, 255);
-    SDL_RenderClear(renderer);
-
-    vector<string> lines;
-    stringstream ss(message);
-    string line;
-    while (getline(ss, line, '\n')) {
-        lines.push_back(line);
-    }
-
-    int y = 250;
-    for (const string& l : lines) {
-        renderText(renderer, font, l, 200, y);
-        y += 40;
-    }
-
-    SDL_RenderPresent(renderer);
-    SDL_Delay(2000);
-}
-
-
-bool showLoginScreen(string& nhapSoTaiKhoan, string& nhapMatKhau, SDL_Renderer* renderer, TTF_Font* font) {
+bool dangNhap(string& nhapSoTaiKhoan, string& nhapMatKhau, SDL_Renderer* renderer, TTF_Font* font) {
     SDL_Rect loginButton = {200, 450, 400, 60};
     SDL_Surface* buttonSurface = IMG_Load("dangnhap.png");
     SDL_Texture* buttonTexture = SDL_CreateTextureFromSurface(renderer, buttonSurface);
@@ -135,7 +113,28 @@ bool showLoginScreen(string& nhapSoTaiKhoan, string& nhapMatKhau, SDL_Renderer* 
     return false;
 }
 
-void showLockedAccountImage(SDL_Renderer* renderer, const string& imagePath) {
+void thongBao(SDL_Renderer* renderer, TTF_Font* font, const string& message) {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 64, 255);
+    SDL_RenderClear(renderer);
+
+    vector<string> lines;
+    stringstream ss(message);
+    string line;
+    while (getline(ss, line, '\n')) {
+        lines.push_back(line);
+    }
+
+    int y = 250;
+    for (const string& l : lines) {
+        renderText(renderer, font, l, 200, y);
+        y += 40;
+    }
+
+    SDL_RenderPresent(renderer);
+    SDL_Delay(2000);
+}
+
+void khoaTaiKhoanTamThoi(SDL_Renderer* renderer, const string& imagePath) {
     SDL_Surface* imgSurface = IMG_Load(imagePath.c_str());
     if (!imgSurface) {
         cout << "Khong the load anh khoa tai khoan\n";
@@ -264,12 +263,12 @@ void chuyenTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>
                         }
                     }
                     if (indexNhan == -1) {
-                        renderMessage(renderer, font, "TAI KHOAN KHONG TON TAI!!!");
+                        thongBao(renderer, font, "TAI KHOAN KHONG TON TAI!!!");
                     }
                 } else if (trangThai == NHAP_SOTIEN) {
                     int soTien = stoi(soTienStr);
                     if (soTien > thongTin[indexTaiKhoan].soDu) {
-                        renderMessage(renderer, font, "TAI KHOAN CUA BAN KHONG DU TIEN!!!");
+                        thongBao(renderer, font, "TAI KHOAN CUA BAN KHONG DU TIEN!!!");
                         SDL_DestroyTexture(nenTexture);
                         return;
                     } else {
@@ -288,7 +287,7 @@ void chuyenTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>
                         } else {
                             cerr << "Khong tai duoc tingtingchuyentien.wav: " << Mix_GetError() << endl;
                         }
-                        renderMessage(renderer, font, "CHUYEN TIEN THANH CONG");
+                        thongBao(renderer, font, "CHUYEN TIEN THANH CONG");
                         Mix_FreeChunk(tingting);
                         SDL_Delay(1500);
                         trangThai = HOANTAT;
@@ -299,12 +298,12 @@ void chuyenTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>
                         if (soLanSaiOTP == 3) {
                             thongTin[indexTaiKhoan].khoaTaiKhoan = 0;
                             luuTrangThaiTaiKhoan(thongTin);
-                            renderMessage(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
-                            showLockedAccountImage(renderer, "khoataikhoan.png");
+                            thongBao(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
+                            khoaTaiKhoanTamThoi(renderer, "khoataikhoan.png");
                             SDL_DestroyTexture(nenTexture);
                             exit(0);
                         } else {
-                            renderMessage(renderer, font, "BAN DA NHAP SAI MA OTP, VUI LONG NHAP LAI!!!");
+                            thongBao(renderer, font, "BAN DA NHAP SAI MA OTP, VUI LONG NHAP LAI!!!");
                         }
                     }
                 }
@@ -376,7 +375,7 @@ void rutTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& t
                     if (trangThai == 0) {
                         soTienCanRut = stoi(soTienStr);
                         if (soTienCanRut > thongTin[indexTaiKhoan].soDu) {
-                            renderMessage(renderer, font, "TAI KHOAN CUA BAN KHONG DU TIEN!!!");
+                            thongBao(renderer, font, "TAI KHOAN CUA BAN KHONG DU TIEN!!!");
                             return;
                         }
                         trangThai = 1;
@@ -406,10 +405,10 @@ void rutTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& t
                             } else {
                                 cerr << "Khong tai duoc tingtingchuyentien.wav: " << Mix_GetError() << endl;
                             }
-                            renderMessage(renderer, font, "RUT TIEN THANH CONG!!!");
+                            thongBao(renderer, font, "RUT TIEN THANH CONG!!!");
                             Mix_FreeChunk(tingting);
                             SDL_Delay(1500);
-                            renderMessage(renderer, font, ketQua);
+                            thongBao(renderer, font, ketQua);
                             trangThai = 2;
                         } else {
                             soLanSaiOTP++;
@@ -417,11 +416,11 @@ void rutTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& t
                             if (soLanSaiOTP == 3) {
                                 thongTin[indexTaiKhoan].khoaTaiKhoan = 0;
                                 luuTrangThaiTaiKhoan(thongTin);
-                                renderMessage(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
-                                showLockedAccountImage(renderer, "khoataikhoan.png");
+                                thongBao(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
+                                khoaTaiKhoanTamThoi(renderer, "khoataikhoan.png");
                                 exit(0);
                             } else {
-                                renderMessage(renderer, font, "BAN DA NHAP SAI MA OTP, VUI LONG NHAP LAI!!");
+                                thongBao(renderer, font, "BAN DA NHAP SAI MA OTP, VUI LONG NHAP LAI!!");
                             }
                         }
                     }
@@ -482,7 +481,6 @@ void dangXuat(SDL_Renderer* renderer, TTF_Font* font) {
     SDL_DestroyTexture(backgroundTexture);
     exit(0);
 }
-
 
 void hienThiMenu(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& thongTin, int indexTaiKhoan) {
     SDL_Event e;

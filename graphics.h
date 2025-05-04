@@ -18,9 +18,9 @@ void quitSDL(SDL_Window* window, SDL_Renderer* renderer);
 void renderText(SDL_Renderer* renderer, TTF_Font* font, const string& text, int x, int y);
 bool isInside(int x, int y, SDL_Rect rect);
 
-bool showLoginScreen(string& nhapSoTaiKhoan, string& nhapMatKhau, SDL_Renderer* renderer, TTF_Font* font);
-void renderMessage(SDL_Renderer* renderer, TTF_Font* font, const string& message);
-void showLockedAccountImage(SDL_Renderer* renderer, const string& imagePath);
+bool dangNhap(string& nhapSoTaiKhoan, string& nhapMatKhau, SDL_Renderer* renderer, TTF_Font* font);
+void thongBao(SDL_Renderer* renderer, TTF_Font* font, const string& message);
+void khoaTaiKhoanTamThoi(SDL_Renderer* renderer, const string& imagePath);
 void hienThiSoDu(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& thongTin, int indexTaiKhoan);
 void chuyenTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& thongTin, int indexTaiKhoan);
 void rutTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& thongTin, int indexTaiKhoan);

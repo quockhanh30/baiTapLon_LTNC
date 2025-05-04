@@ -22,7 +22,7 @@ int main() {
     int index = -1;
 
     while (!daDangNhap && lanSai < 5) {
-        if (!showLoginScreen(nhapSoTaiKhoan, nhapMatKhau, renderer, font)) {
+        if (!dangNhap(nhapSoTaiKhoan, nhapMatKhau, renderer, font)) {
             quitSDL(window, renderer);
             return 0;
         }
@@ -37,13 +37,13 @@ int main() {
         }
 
         if (index == -1) {
-            renderMessage(renderer, font, "TAI KHOAN CHUA DUOC MO!!!");
+            thongBao(renderer, font, "TAI KHOAN CHUA DUOC MO!!!");
             continue;
         }
 
         if (thongTin[index].khoaTaiKhoan == 0) {
-            renderMessage(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
-            showLockedAccountImage(renderer, "khoataikhoan.png");
+            thongBao(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
+            khoaTaiKhoanTamThoi(renderer, "khoataikhoan.png");
             quitSDL(window, renderer);
             return 0;
         }
@@ -53,15 +53,15 @@ int main() {
             break;
         } else {
             lanSai++;
-            renderMessage(renderer, font, "BAN DA NHAP SAI MAT KHAU!!!");
+            thongBao(renderer, font, "BAN DA NHAP SAI MAT KHAU!!!");
         }
     }
 
     if (lanSai >= 5 && index != -1) {
         thongTin[index].khoaTaiKhoan = 0;
         luuTrangThaiTaiKhoan(thongTin);
-        renderMessage(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
-        showLockedAccountImage(renderer, "khoataikhoan.png");
+        thongBao(renderer, font, "TAI KHOAN CUA BAN DA BI KHOA TAM THOI!!!");
+        khoaTaiKhoanTamThoi(renderer, "khoataikhoan.png");
         quitSDL(window, renderer);
         return 0;
     }
