@@ -170,7 +170,7 @@ void hienThiSoDu(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan
     SDL_Rect nutQuayLaiRect = { 50, 450, 400, 100 };
     SDL_Texture* btnQuayLai = IMG_LoadTexture(renderer, "quaylai.png");
 
-    SDL_Texture* backgroundTexture = IMG_LoadTexture(renderer, "hinhnenTienSoDu.jpg");
+    SDL_Texture* backgroundTexture = IMG_LoadTexture(renderer, "hinhnentienSoDu.jpg");
     if (!backgroundTexture) {
         cerr << "khong tai duoc hinh nen!" << endl;
         exit(1);
@@ -212,7 +212,7 @@ void chuyenTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>
     enum TrangThaiNhap { NHAP_TAIKHOAN, NHAP_SOTIEN, NHAP_OTP, HOANTAT } trangThai = NHAP_TAIKHOAN;
 
     SDL_Rect nutQuayLaiRect = { 10, 10, 300, 80 };
-    SDL_Texture* nenTexture = IMG_LoadTexture(renderer, "hinhnentienChuyenTien.png");
+    SDL_Texture* nenTexture = IMG_LoadTexture(renderer, "hinhnencayATM.jpg");
 
     SDL_StartTextInput();
     int soLanSaiOTP = 0;
@@ -429,7 +429,7 @@ void rutTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& t
             }
         }
 
-        SDL_Surface* nenSurface = IMG_Load("hinhnentienRutTien.jpeg");
+        SDL_Surface* nenSurface = IMG_Load("hinhnencayATM.jpg");
         SDL_Texture* nenTexture = nenSurface ? SDL_CreateTextureFromSurface(renderer, nenSurface) : nullptr;
         if (nenTexture) {
             SDL_RenderCopy(renderer, nenTexture, NULL, NULL);

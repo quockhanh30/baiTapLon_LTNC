@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1745476319 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\graphics.cpp
+1745767360 source:c:\users\gigabyte\onedrive - vnu.edu.vn\desktop\demosdl\baitaplon_ltnc\graphics.cpp
 	"graphics.h"
 	<SDL_image.h>
 	<iostream>
