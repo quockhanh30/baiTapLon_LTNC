@@ -347,7 +347,7 @@ void rutTien(SDL_Renderer* renderer, TTF_Font* font, vector<thongTinTaiKhoan>& t
     SDL_Event e;
     SDL_StartTextInput();
 
-    SDL_Rect nutQuayLaiRect = { 50, 450, 400, 100 };
+    SDL_Rect nutQuayLaiRect = { 10, 10, 300, 80 };
 
     while (trangThai != 2) {
         while (SDL_PollEvent(&e)) {
